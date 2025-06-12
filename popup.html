@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Obscura Settings</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="min-w-[350px] max-w-[500px]">
+			<header class="w-full relative z-10 pt-1">
+				<div class="px-4 py-4 flex justify-between items-center">
+					<h1 class="text-xl font-bold text-[var(--dark-blue)]">Obscura</h1>
+					<div class="bg-white/85 px-4 py-1 rounded-lg shadow-lg">
+						<div class="flex gap-4">
+							<a
+								href="#"
+								id="open-welcome"
+								class="nav-link text-[var(--dark-blue)]"
+							>
+								MANIFESTO
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="px-4">
+					<div class="dotted-line"></div>
+				</div>
+			</header>
+
+			<div class="p-4">
+				<h2 class="text-xl font-bold mb-4 text-[var(--dark-blue)]">SETTINGS</h2>
+
+				<!-- Tabs -->
+				<div class="mb-6">
+					<div class="flex border-b border-[var(--calm-blue)]">
+						<button
+							id="tab-global"
+							class="px-4 py-2 font-medium border-b-2 border-[var(--dark-blue)] text-[var(--dark-blue)]"
+						>
+							GLOBAL
+						</button>
+						<button
+							id="tab-youtube"
+							class="px-4 py-2 font-medium border-b-2 border-transparent hover:text-[var(--dark-blue)]"
+						>
+							YOUTUBE
+						</button>
+						<button
+							id="tab-twitter"
+							class="px-4 py-2 font-medium border-b-2 border-transparent hover:text-[var(--dark-blue)]"
+						>
+							TWITTER
+						</button>
+						<button
+							id="tab-reddit"
+							class="px-4 py-2 font-medium border-b-2 border-transparent hover:text-[var(--dark-blue)]"
+						>
+							REDDIT
+						</button>
+					</div>
+				</div>
+
+				<!-- Tab Content -->
+				<div id="tab-content">
+					<!-- Global Settings Tab -->
+					<div id="content-global" class="tab-content">
+						<div class="mb-6">
+							<label
+								for="global-goals"
+								class="block mb-2 font-bold text-[var(--dark-blue)]"
+								>INTERNET USAGE INTENTIONS:</label
+							>
+							<textarea
+								id="global-goals"
+								rows="4"
+								class="w-full px-3 py-2 bg-white border border-[var(--calm-blue)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--dark-blue)]"
+								placeholder="Describe your long-term goals and what content you want to see across all platforms."
+							></textarea>
+							<p class="mt-1 text-sm text-[var(--dark-blue)]">
+								This helps Obscura understand what content aligns with your goals.
+							</p>
+						</div>
+
+						<div class="mb-6">
+							<label
+								for="openrouter-key"
+								class="block mb-2 font-bold text-[var(--dark-blue)]"
+								>OPENROUTER API KEY:</label
+							>
+							<div class="relative">
+								<input
+									type="password"
+									id="openrouter-key"
+									class="w-full px-3 py-2 bg-white border border-[var(--calm-blue)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--dark-blue)]"
+									placeholder="Enter your OpenRouter API key"
+								/>
+							</div>
+							<p class="mt-1 text-sm text-[var(--dark-blue)]">
+								Required to analyze content. Get a key at
+								<a
+									href="https://openrouter.ai/"
+									target="_blank"
+									class="text-[var(--dark-blue)] underline hover:no-underline"
+									>openrouter.ai</a
+								>
+							</p>
+						</div>
+					</div>
+
+					<!-- YouTube Settings Tab -->
+					<div id="content-youtube" class="tab-content hidden">
+						<div class="flex items-center justify-between mb-4">
+							<h3 class="font-bold text-[var(--dark-blue)]">
+								YOUTUBE SETTINGS
+							</h3>
+							<label class="toggle-switch">
+								<input type="checkbox" id="youtube-enabled" />
+								<span class="toggle-slider"></span>
+							</label>
+						</div>
+
+						<div class="mb-6">
+							<label
+								for="youtube-content"
+								class="block mb-2 font-bold text-[var(--dark-blue)]"
+								>CONTENT PREFERENCES:</label
+							>
+							<textarea
+								id="youtube-content"
+								rows="3"
+								class="w-full px-3 py-2 bg-white border border-[var(--calm-blue)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--dark-blue)]"
+								placeholder="Describe what YouTube content you want to see and what to filter out."
+							></textarea>
+						</div>
+
+						<div class="mb-6">
+							<label class="block mb-2 font-bold text-[var(--dark-blue)]">
+								PROBABILITY CUTOFF (<span id="youtube-cutoff-value">60</span>%):
+							</label>
+							<input
+								type="range"
+								id="youtube-cutoff"
+								min="0"
+								max="100"
+								step="1"
+								value="60"
+								class="w-full h-2 bg-[var(--calm-blue)]/30 rounded-lg appearance-none cursor-pointer"
+							/>
+							<p class="mt-1 text-sm text-[var(--dark-blue)]">
+								Videos below this threshold will be hidden.
+							</p>
+						</div>
+					</div>
+
+					<!-- Twitter Settings Tab -->
+					<div id="content-twitter" class="tab-content hidden">
+						<div class="flex items-center justify-between mb-4">
+							<h3 class="font-bold text-[var(--dark-blue)]">
+								TWITTER SETTINGS
+								<span
+									class="ml-2 text-xs px-2 py-1 bg-red-100 under-development rounded-full"
+									>Under Development</span
+								>
+							</h3>
+
+							<label class="toggle-switch">
+								<input type="checkbox" id="twitter-enabled" />
+								<span class="toggle-slider"></span>
+							</label>
+						</div>
+
+						<div class="mb-6">
+							<label
+								for="twitter-content"
+								class="block mb-2 font-bold text-[var(--dark-blue)]"
+								>CONTENT PREFERENCES:</label
+							>
+							<textarea
+								id="twitter-content"
+								rows="3"
+								class="w-full px-3 py-2 bg-white border border-[var(--calm-blue)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--dark-blue)]"
+								placeholder="Describe what Twitter content you want to see and what to filter out."
+							></textarea>
+						</div>
+
+						<div class="mb-6">
+							<label class="block mb-2 font-bold text-[var(--dark-blue)]">
+								PROBABILITY CUTOFF (<span id="twitter-cutoff-value">60</span>%):
+							</label>
+							<input
+								type="range"
+								id="twitter-cutoff"
+								min="0"
+								max="100"
+								step="1"
+								value="60"
+								class="w-full h-2 bg-[var(--calm-blue)]/30 rounded-lg appearance-none cursor-pointer"
+							/>
+							<p class="mt-1 text-sm text-[var(--dark-blue)]">
+								Tweets below this threshold will be hidden.
+							</p>
+						</div>
+					</div>
+
+					<!-- Reddit Settings Tab -->
+					<div id="content-reddit" class="tab-content hidden">
+						<div class="flex items-center justify-between mb-4">
+							<h3 class="font-bold text-[var(--dark-blue)]">
+								REDDIT SETTINGS
+								<span
+									class="ml-2 text-xs px-2 py-1 bg-red-100 under-development rounded-full"
+									>Under Development</span
+								>
+							</h3>
+							<label class="toggle-switch">
+								<input type="checkbox" id="reddit-enabled" />
+								<span class="toggle-slider"></span>
+							</label>
+						</div>
+
+						<div class="mb-6">
+							<label
+								for="reddit-content"
+								class="block mb-2 font-bold text-[var(--dark-blue)]"
+								>CONTENT PREFERENCES:</label
+							>
+							<textarea
+								id="reddit-content"
+								rows="3"
+								class="w-full px-3 py-2 bg-white border border-[var(--calm-blue)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--dark-blue)]"
+								placeholder="Describe what Reddit content you want to see and what to filter out."
+							></textarea>
+						</div>
+
+						<div class="mb-6">
+							<label class="block mb-2 font-bold text-[var(--dark-blue)]">
+								PROBABILITY CUTOFF (<span id="reddit-cutoff-value">60</span>%):
+							</label>
+							<input
+								type="range"
+								id="reddit-cutoff"
+								min="0"
+								max="100"
+								step="1"
+								value="60"
+								class="w-full h-2 bg-[var(--calm-blue)]/30 rounded-lg appearance-none cursor-pointer"
+							/>
+							<p class="mt-1 text-sm text-[var(--dark-blue)]">
+								Posts below this threshold will be hidden.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="mt-6">
+					<button id="save-btn" class="w-full py-2 btn font-bold">
+						SAVE SETTINGS
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="dist/popup.bundle.js"></script>
+	</body>
+</html>
