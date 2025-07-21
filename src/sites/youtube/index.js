@@ -234,6 +234,12 @@ export default class YouTubeModule extends BaseSiteModule {
 			if (channelElement) break;
 		}
 
+	
+                sanitizeTextInput(input) {
+	         if (typeof input !== "string") return "";
+	        return input.trim();
+                }
+
 		if (channelElement) {
 			channelName = channelElement.textContent.trim().split("\n")[0];
 		}
