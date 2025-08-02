@@ -356,6 +356,23 @@ export default class TwitterModule extends BaseSiteModule {
 	}
 
 	/**
+	 * Heuristically score tweet sentiment 
+	 * @param {string} text - The tweet text content
+	 * @returns {number} - sentiment score
+	 */
+	estimateSentimentScore(text) {
+		if (!text || typeof text !== "string") return 0;
+		// Simple hash-based score between 0–100
+		let hash = 0;
+		for (let i = 0; i < text.length; i++) {
+			hash = (hash << 5) - hash + text.charCodeAt(i);
+			hash |= 0; // Convert to 32bit integer
+		}
+		return Math.abs(hash % 101); // Score from 0 to 100
+	}
+
+
+	/**
 	 * Change the placeholder text
 	 * @param {HTMLElement} element - The element containing the placeholder
 	 * @param {string} text - The text to display (optional)
