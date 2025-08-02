@@ -284,6 +284,19 @@ export default class TwitterModule extends BaseSiteModule {
 			return "";
 		};
 
+	/**
+	 * Normalize tweet length to a 0–1 scale for downstream scoring
+	 * @param {string} text - The tweet text content
+	 * @returns {number} - Normalized length score
+	 */
+	normalizeTweetLength(text) {
+		if (!text || typeof text !== "string") return 0;
+		const maxLength = 280; // Twitter character limit
+		const clampedLength = Math.min(text.length, maxLength);
+		return parseFloat((clampedLength / maxLength).toFixed(3));
+	}
+
+
 		// Basic tweet information
 		const displayName = getText(twitterSelectors.userName);
 		const userHandle = getText(twitterSelectors.userHandle);
